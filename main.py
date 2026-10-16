@@ -4,13 +4,14 @@ import asyncio
 import logging
 from zoneinfo import ZoneInfo
 from flask import Flask
-from telegram.ext import Application
+from telegram import Update
+from telegram.ext import Application, CommandHandler, ContextTypes
 
-# موقع وهمي عشان Render يشتغل
+# عشان Render يشتغل
 app_flask = Flask(__name__)
 @app_flask.route('/')
 def home():
-    return "Bot is Alive - شغال ✅"
+    return "Bot is Alive - فغال ✅"
 
 def run_flask():
     port = int(os.environ.get("PORT", 10000))
@@ -26,16 +27,24 @@ TIMEZONE = ZoneInfo("Asia/Riyadh")
 
 logging.basicConfig(level=logging.INFO)
 
+# هذا اللي يرد في الخاص
+async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    await update.message.reply_text("هلا والله! البوت فغال ✅\nارسل /start")
+
 async def main():
-    print("Bot is Alive - شغال ✅")
+    print("Bot is Alive - فغال ✅")
     if not BOT_TOKEN:
         print("❌ BOT_TOKEN مو موجود!")
         return
     app = Application.builder().token(BOT_TOKEN).build()
+    
+    # نضيف الاوامر
+    app.add_handler(CommandHandler("start", start))
+    
     await app.initialize()
     await app.start()
     await app.updater.start_polling()
-    print("البوت شغال الحين")
+    print("البوت فغال الحين")
     while True:
         await asyncio.sleep(3600)
 
