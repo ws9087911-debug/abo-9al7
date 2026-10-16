@@ -1,5 +1,4 @@
-os, threading, asyncio, requests, random
-from flask import Flask
+import os, threading, asyncio, requests, randomfrom flask import Flask
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
 from telegram.ext import Application, CommandHandler, CallbackQueryHandler, ContextTypes
 
