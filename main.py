@@ -1,10 +1,12 @@
-import os, asyncio, logging
-from zoneinfo import ZoneInfo
-from telegram.ext import Application
-from flask import Flask
+import os
 import threading
+import asyncio
+import logging
+from zoneinfo import ZoneInfo
+from flask import Flask
+from telegram.ext import Application
 
-# موقع وهمي عشان Render
+# موقع وهمي عشان Render يشتغل
 app_flask = Flask(__name__)
 @app_flask.route('/')
 def home():
@@ -17,7 +19,6 @@ def run_flask():
 threading.Thread(target=run_flask, daemon=True).start()
 
 # كود البوت
-from telegram.ext import Application
 BOT_TOKEN = os.getenv("BOT_TOKEN")
 CHANNEL_ID = -1004425103888
 ADMIN_USER_ID = 1070384291
