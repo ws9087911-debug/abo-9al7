@@ -1,4 +1,4 @@
-import os, time, requests
+time, 
 from flask import Flask
 from threading import Thread
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
